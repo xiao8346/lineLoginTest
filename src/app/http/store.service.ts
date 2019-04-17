@@ -50,7 +50,7 @@ export class StoreService {
   }
 
   removeStore(sid: string) {
-    return this.http.get(`http://localhost:3300/stores/${sid}`)
+    return this.http.delete(`http://localhost:3300/stores/${sid}`)
       .pipe(
         map(data => data['data']),
       );

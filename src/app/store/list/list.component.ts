@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import * as _ from 'lodash';
 
 import { StoreService } from '../../http';
 
@@ -9,11 +12,10 @@ import { StoreService } from '../../http';
 })
 export class ListComponent implements OnInit {
 
-  entries: any[] = [
-    { id: '111111', name: 'ddd', address: 'aaa', phone: '2299', principal: 'lin' },
-  ];
+  entries: any[] = [];
 
   constructor(
+    private router: Router,
     private storeService: StoreService
   ) { }
 
@@ -24,20 +26,31 @@ export class ListComponent implements OnInit {
   readStores() {
     this.storeService.readStores()
       .subscribe(data => {
-        // this.entries = data;
+        this.entries = data;
       });
   }
 
   removeStore(entry) {
-    console.log('entry', entry);
-
     if (!confirm('確定刪除嗎?')) { return; }
 
-    this.storeService.removeStore(entry.id)
+    this.storeService.removeStore(entry._id)
       .subscribe(data => {
-        console.log('data', data);
-        alert('店家: ' + data.name + '已刪除');
+        const index = _.findIndex(this.entries, { _id: entry._id });
+
+        if (index > -1) {
+          alert('店家: ' + data.name + '已刪除');
+          this.entries.splice(index, 1);
+        }
       })
+  }
+
+  gotoEditor(sid?: string) {
+    console.log('sid', sid);
+    if (sid) {
+      this.router.navigate(['/store-editor', sid]);
+    } else {
+      this.router.navigate(['/store-editor/_new']);
+    }
   }
 
   trackByEntries(index: number, entry) { return entry.id; }

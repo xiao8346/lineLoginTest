@@ -62,13 +62,12 @@ export class EditorComponent implements OnInit, OnDestroy {
   createStore(params) {
     this.storeService.createStore(params)
       .subscribe(data => {
-        console.log('data', data);
         alert('建立成功');
+        this.router.navigate(['/store-editor', data._id])
       }, err => alert('建立失敗'))
   }
 
   save() {
-    console.log('save');
     const params = {
       name: this.name,
       address: this.address,

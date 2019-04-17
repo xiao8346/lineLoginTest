@@ -17,7 +17,7 @@
               i.fa.fa-plus
           tr.pointer-cursor(
             *ngFor="let entry of entries; let i = index; trackBy:trackByEntries",
-            [routerLink]=['/store-editor/_new']
+            (click)="gotoEditor(entry._id)"
           )
             td.text-center
               | {{ i + 1 }}

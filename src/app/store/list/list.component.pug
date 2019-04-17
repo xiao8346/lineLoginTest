@@ -1,0 +1,34 @@
+.panel.panel-default
+  .table-responsive
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th.text-center #
+          th.text-center 名稱
+          th.text-center 地址
+          th.text-center 電話
+          th.text-center 負責人
+          th.text-center
+      tbody
+          tr
+            td.text-center.text-danger.pointer-cursor(
+              colspan="99", [routerLink]=['/store-editor/_new'])
+              | 手動新增資料&nbsp;
+              i.fa.fa-plus
+          tr.pointer-cursor(
+            *ngFor="let entry of entries; let i = index; trackBy:trackByEntries",
+            [routerLink]=['/store-editor/_new']
+          )
+            td.text-center
+              | {{ i + 1 }}
+            td.text-center
+              | {{ entry.name }}
+            td.text-center
+              | {{ entry.address }}
+            td.text-center
+              | {{ entry.phone }}
+            td.text-center
+              | {{ entry.principal }}
+            td.text-center
+              button.btn.btn-danger(type="button", (click)="removeStore(entry);$event.stopPropagation();")
+                i.fa.fa-trash

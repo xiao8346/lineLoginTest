@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+.container
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed(
+          type="button")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand([routerLink]="['/']", routerLinkActive="active", [routerLinkActiveOptions]="{exact: true}")
+          i.fa.fa-home.fa-fw
+
+      ul.nav.navbar-nav
+        li
+          a([routerLink]="['/get-code']")
+            i.fa.fa-sign-in
+            | &nbsp;line login
+
+        li
+          a([routerLink]="['/store-list']")
+            i.fa.fa-list
+            | &nbsp;store list
+    
+  router-outlet

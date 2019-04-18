@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
+
+import { APP_CONFIG, IAppConfig } from '../app.config';
 
 export interface CreateLineLoginTokenParams {
   code: string;
@@ -13,7 +15,10 @@ export interface CreateLineLoginTokenParams {
 })
 export class LineService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    @Inject(APP_CONFIG) private appConfig: IAppConfig,
+    private http: HttpClient
+  ) { }
 
   getLineNotifyUrl() {
     const URL = 'https://access.line.me/oauth2/v2.1/authorize?';
@@ -31,7 +36,7 @@ export class LineService {
   }
 
   createLineLoginToken(code: string, params) {
-    return this.http.post(`https://xiao-test-api.herokuapp.com/line-login-token`, params)
+    return this.http.post(`${this.appConfig.apiBaseUrl}/line-login-token`, params)
       .pipe(
         map(data => data['data']),
       );

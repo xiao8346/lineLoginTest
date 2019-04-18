@@ -31,7 +31,7 @@ export class LineService {
   }
 
   createLineLoginToken(code: string, params) {
-    return this.http.post(`http://localhost:3300/line-login-token`, params)
+    return this.http.post(`https://xiao-test-api.herokuapp.com/line-login-token`, params)
       .pipe(
         map(data => data['data']),
       );

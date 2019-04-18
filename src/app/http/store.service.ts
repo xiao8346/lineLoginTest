@@ -22,35 +22,35 @@ export class StoreService {
 
 
   readStores(): Observable<any[]> {
-    return this.http.get(`http://localhost:3300/stores`)
+    return this.http.get(`https://xiao-test-api.herokuapp.com/stores`)
       .pipe(
         map(data => data['data']),
       );
   }
 
   createStore(params: StoreParams) {
-    return this.http.post(`http://localhost:3300/stores`, params)
+    return this.http.post(`https://xiao-test-api.herokuapp.com/stores`, params)
       .pipe(
         map(data => data['data'])
       );
   }
 
   readStore(sid: string) {
-    return this.http.get(`http://localhost:3300/stores/${sid}`)
+    return this.http.get(`https://xiao-test-api.herokuapp.com/stores/${sid}`)
       .pipe(
         map(data => data['data']),
       );
   }
 
   updateStore(sid: string, params: StoreParams) {
-    return this.http.patch(`http://localhost:3300/stores/${sid}`, params)
+    return this.http.patch(`https://xiao-test-api.herokuapp.com/stores/${sid}`, params)
       .pipe(
         map(data => data['data']),
       );
   }
 
   removeStore(sid: string) {
-    return this.http.delete(`http://localhost:3300/stores/${sid}`)
+    return this.http.delete(`https://xiao-test-api.herokuapp.com/stores/${sid}`)
       .pipe(
         map(data => data['data']),
       );

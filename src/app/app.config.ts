@@ -7,5 +7,5 @@ export interface IAppConfig {
 }
 
 export const AppConfig: IAppConfig = {
-  apiBaseUrl: 'https://xiao-test-client.herokuapp.com',
+  apiBaseUrl: 'https://xiao-test-api.herokuapp.com',
 };

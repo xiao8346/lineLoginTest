@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "npm run build && npm run server",
+    "serve": "ng serve",
+    "build": "ng build --aot --prod",
     "server": "node server.js",
     "test": "ng test",
     "lint": "ng lint",

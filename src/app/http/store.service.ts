@@ -25,7 +25,6 @@ export class StoreService {
 
 
   readStores(): Observable<any[]> {
-    console.log('this.appConfig.apiBaseUrl', this.appConfig.apiBaseUrl);
     return this.http.get(`${this.appConfig.apiBaseUrl}/stores`)
       .pipe(
         map(data => data['data']),

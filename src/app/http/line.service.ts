@@ -14,6 +14,7 @@ export interface CreateLineLoginTokenParams {
   providedIn: 'root'
 })
 export class LineService {
+  private readonly LineLoginURL = 'https://access.line.me/oauth2/v2.1/authorize?';
 
   constructor(
     @Inject(APP_CONFIG) private appConfig: IAppConfig,
@@ -21,18 +22,16 @@ export class LineService {
   ) { }
 
   getLineNotifyUrl() {
-    const URL = 'https://access.line.me/oauth2/v2.1/authorize?';
-
     const query = [
       'response_type=code',
       'client_id=' + '1565412044',
-      'redirect_uri=' + encodeURIComponent('http://localhost:3000/get-code'),
+      'redirect_uri=' + encodeURIComponent(this.appConfig.lineLoginCallBackURL),
       'state=' + 'abcde',
       'scope=openid%20profile'
     ].join('&');
 
 
-    return `https://access.line.me/oauth2/v2.1/authorize?${query}`;
+    return `${this.LineLoginURL}${query}`;
   }
 
   createLineLoginToken(code: string, params) {

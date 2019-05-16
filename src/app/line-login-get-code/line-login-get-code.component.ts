@@ -10,7 +10,7 @@ import { LineService } from '../http';
   templateUrl: './line-login-get-code.component.pug',
   styleUrls: ['./line-login-get-code.component.less']
 })
-export class LineLoginGetCodeComponent implements OnInit {
+export class LineLoginGetCodeComponent implements OnInit, OnDestroy {
   onQueryParamsChange: Subscription;
 
   code: string;
@@ -24,19 +24,23 @@ export class LineLoginGetCodeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.token = localStorage.getItem('token');
+
     this.onQueryParamsChange = this.route
       .queryParams
       .subscribe(params => {
         const code = params['code'];
         const state = params['state'];
         this.code = code;
-        console.log('token', this.token);
-        console.log('code', this.code);
         if (code && state) {
           this.createLineLoginToken(code);
         }
       })
 
+  }
+
+  ngOnDestroy() {
+    this.onQueryParamsChange.unsubscribe();
   }
 
   getLineNotifyUrl() {
@@ -49,11 +53,14 @@ export class LineLoginGetCodeComponent implements OnInit {
       code
     };
 
-    return this.lineService.createLineLoginToken(code, params)
-      .subscribe(token => {
-        console.log('token', token);
-        // localStorage.setItem('token', token);
-        this.token = token;
+    this.lineService.createLineLoginToken(code, params)
+      .subscribe(tokenInfo => {
+        console.log('token', tokenInfo);
+        if (tokenInfo && tokenInfo.id_token) {
+          localStorage.setItem('token', tokenInfo.id_token);
+          this.token = tokenInfo;
+          this.router.navigate(['/get-code']);
+        }
       }, err => console.error('createLineLoginToken err', err));
   }
 

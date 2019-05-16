@@ -45,7 +45,6 @@ export class ListComponent implements OnInit {
   }
 
   gotoEditor(sid?: string) {
-    console.log('sid', sid);
     if (sid) {
       this.router.navigate(['/store-editor', sid]);
     } else {

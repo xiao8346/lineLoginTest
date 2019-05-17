@@ -17,7 +17,8 @@
               i.fa.fa-plus
           tr.pointer-cursor(
             *ngFor="let entry of entries; let i = index; trackBy:trackByEntries",
-            (click)="gotoEditor(entry._id)"
+            (click)="gotoEditor(entry._id)", (mouseover)="isShowDeleteBtn=true",
+            (mouseout)="isShowDeleteBtn=false"
           )
             td.text-center
               | {{ i + 1 }}
@@ -30,5 +31,7 @@
             td.text-center
               | {{ entry.principal }}
             td.text-center
-              button.btn.btn-danger(type="button", (click)="removeStore(entry);$event.stopPropagation();")
+              button.btn.btn-danger(type="button", [class.btn-delete]="!isShowDeleteBtn",
+                (click)="removeStore(entry);$event.stopPropagation();"
+              )
                 i.fa.fa-trash

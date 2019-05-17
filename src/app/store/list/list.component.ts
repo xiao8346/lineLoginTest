@@ -13,6 +13,7 @@ import { StoreService } from '../../http';
 export class ListComponent implements OnInit {
 
   entries: any[] = [];
+  isShowDeleteBtn: boolean;
 
   constructor(
     private router: Router,
@@ -41,7 +42,7 @@ export class ListComponent implements OnInit {
           alert('店家: ' + data.name + '已刪除');
           this.entries.splice(index, 1);
         }
-      })
+      });
   }
 
   gotoEditor(sid?: string) {

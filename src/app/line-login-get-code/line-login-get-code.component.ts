@@ -35,7 +35,7 @@ export class LineLoginGetCodeComponent implements OnInit, OnDestroy {
         if (code && state) {
           this.createLineLoginToken(code);
         }
-      })
+      });
 
   }
 
@@ -64,4 +64,11 @@ export class LineLoginGetCodeComponent implements OnInit, OnDestroy {
       }, err => console.error('createLineLoginToken err', err));
   }
 
+  removeToken() {
+    if (!confirm('刪除token?')) { return; }
+
+    localStorage.removeItem('token');
+
+    this.router.navigate(['/']);
+  }
 }

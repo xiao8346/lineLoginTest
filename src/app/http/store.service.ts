@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -25,6 +25,12 @@ export class StoreService {
 
 
   readStores(): Observable<any[]> {
+    // const params = new HttpParams();
+
+    // params
+    //   .append('aaa', '');
+
+    // return this.http.get(`${this.appConfig.apiBaseUrl}/stores`, { params })
     return this.http.get(`${this.appConfig.apiBaseUrl}/stores`)
       .pipe(
         map(data => data['data']),

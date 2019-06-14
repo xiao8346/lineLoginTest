@@ -10,28 +10,33 @@
           th.text-center 負責人
           th.text-center
       tbody
-          tr
-            td.text-center.text-danger.pointer-cursor(
-              colspan="99", [routerLink]=['/store-editor/_new'])
-              | 手動新增資料&nbsp;
-              i.fa.fa-plus
-          tr.pointer-cursor(
-            *ngFor="let entry of entries; let i = index; trackBy:trackByEntries",
-            (click)="gotoEditor(entry._id)", (mouseover)="isShowDeleteBtn=true",
-            (mouseout)="isShowDeleteBtn=false"
-          )
-            td.text-center
-              | {{ i + 1 }}
-            td.text-center
-              | {{ entry.name }}
-            td.text-center
-              | {{ entry.address }}
-            td.text-center
-              | {{ entry.phone }}
-            td.text-center
-              | {{ entry.principal }}
-            td.text-center
-              button.btn.btn-danger(type="button", [class.btn-delete]="!isShowDeleteBtn",
-                (click)="removeStore(entry);$event.stopPropagation();"
-              )
-                i.fa.fa-trash
+        tr
+          td.text-center.text-danger.pointer-cursor(
+            colspan="99", [routerLink]=['/store-editor/_new'])
+            | 手動新增資料&nbsp;
+            i.fa.fa-plus
+        tr.pointer-cursor(
+          *ngFor="let entry of entries; let i = index; trackBy:trackByEntries",
+          (click)="gotoEditor(entry._id)", (mouseover)="isShowDeleteBtn=true",
+          (mouseout)="isShowDeleteBtn=false"
+        )
+          td.text-center
+            | {{ i + 1 }}
+          td.text-center
+            | {{ entry.name }}
+          td.text-center
+            | {{ entry.address }}
+          td.text-center
+            | {{ entry.phone }}
+          td.text-center
+            | {{ entry.principal }}
+          td.text-center
+            button.btn.btn-danger(type="button", [class.btn-delete]="!isShowDeleteBtn",
+              (click)="removeStore(entry);$event.stopPropagation();"
+            )
+              i.fa.fa-trash
+
+//- button.btn.btn-danger(type="button", (click)="changeValue(1)") aaa1
+//- button.btn.btn-danger(type="button", (click)="changeValue(2)") aaa2
+//- button.btn.btn-danger(type="button", (click)="changeValue(3)") aaa3
+

@@ -22,11 +22,11 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "ng-cli-pug-loader": "^0.1.7",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
@@ -56,9 +56,5 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
-  },
-  "engines": {
-    "node": "10.15.3",
-    "npm": "6.4.1"
   }
 }

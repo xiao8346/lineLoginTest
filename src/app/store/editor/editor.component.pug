@@ -1,32 +1,66 @@
-form.form-horizontal(#form="ngForm", (ngSubmit)="save()")
-  .panel.panel-info
-    .panel-body
-      .form-group
-        label.control-label.col-sm-2(for="name") 商店名稱
-        .col-sm-3
-          input.form-control#name(type="text", name="name",
-            [(ngModel)]="name",
-            required)
-      .form-group
-        label.control-label.col-sm-2(for="address") 商店地址
-        .col-sm-3
-          input.form-control#address(type="text", name="address",
-            [(ngModel)]="address",
-            required)
-      .form-group
-        label.control-label.col-sm-2(for="phone") 商店電話
-        .col-sm-3
-          input.form-control#phone(type="phone", name="phone",
-            [(ngModel)]="phone",
-            required)
-      .form-group
-        label.control-label.col-sm-2(for="principal") 商店負責人
-        .col-sm-3
-          input.form-control#principal(type="text", name="principal",
-            [(ngModel)]="principal",
-            required)
-    .panel-footer
-      .text-right
-        button.btn.btn-primary(type="submit", [disabled]="!form.valid")
-          i.fa.fa-floppy-o
-          | &nbsp; 確定
+div(*ngIf="!readStoreLoading")
+  form.form-horizontal([formGroup]="form", (ngSubmit)="save()")
+    .panel.panel-info
+      .panel-body
+        .form-group
+          label.control-label.col-sm-2(for="name") 商店名稱
+          .col-sm-3
+            input.form-control#name(type="text", name="name",
+              formControlName="name"
+              required)
+        .form-group
+          label.control-label.col-sm-2(for="address") 商店地址
+          .col-sm-3
+            input.form-control#address(type="text", name="address",
+              formControlName="address",
+              required)
+        .form-group
+          label.control-label.col-sm-2(for="phone") 商店電話
+          .col-sm-3
+            input.form-control#phone(type="phone", name="phone",
+              formControlName="phone",
+              required)
+        .form-group
+          label.control-label.col-sm-2(for="principal") 商店負責人
+          .col-sm-3
+            input.form-control#principal(type="text", name="principal",
+              formControlName="principal",
+              required)
+      .panel-footer
+        .text-right
+          button.btn.btn-primary(type="submit", [disabled]="!form.valid")
+            i.fa.fa-floppy-o
+            | &nbsp; 確定
+
+//- form.form-horizontal(#form="ngForm", (ngSubmit)="save()")
+//-   .panel.panel-info
+//-     .panel-body
+//-       .form-group
+//-         label.control-label.col-sm-2(for="name") 商店名稱
+//-         .col-sm-3
+//-           input.form-control#name(type="text", name="name",
+//-             [(ngModel)]="name",
+//-             required)
+//-       .form-group
+//-         label.control-label.col-sm-2(for="address") 商店地址
+//-         .col-sm-3
+//-           input.form-control#address(type="text", name="address",
+//-             [(ngModel)]="address",
+//-             required)
+//-       .form-group
+//-         label.control-label.col-sm-2(for="phone") 商店電話
+//-         .col-sm-3
+//-           input.form-control#phone(type="phone", name="phone",
+//-             [(ngModel)]="phone",
+//-             required)
+//-       .form-group
+//-         label.control-label.col-sm-2(for="principal") 商店負責人
+//-         .col-sm-3
+//-           input.form-control#principal(type="text", name="principal",
+//-             [(ngModel)]="principal",
+//-             required)
+//-     .panel-footer
+//-       .text-right
+//-         button.btn.btn-primary(type="submit", [disabled]="!form.valid")
+//-           i.fa.fa-floppy-o
+//-           | &nbsp; 確定

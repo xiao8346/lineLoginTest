@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { map, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 import { StoreService } from '../../http';
@@ -28,24 +27,10 @@ export class ListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // 監控 page, limit 變化
     this.onQuery = this.route.queryParams
-      .pipe(
-        map(() => this.getQueryParams()),
-        debounceTime(0),
-        // 沒這行目前好像 navigate 同一個 query string 也不會 subscribe，可能可以刪除
-        distinctUntilChanged((x, y) => _.isEqual(x, y)),
-        tap(options => {
-          const queryParams: any = {};
-
-          if (options.aaa) {
-            queryParams.aaa = options.aaa;
-          }
-
-          this.router.navigate(['store-list'], { queryParams });
-        })
-      )
-      .subscribe(options => this.readStores(options));
+      .subscribe(queryMap => {
+        this.readStores()
+      });
 
     // // 監控 page, limit 變化
     // this.onQuery = this.paging.pageChange
@@ -77,18 +62,18 @@ export class ListComponent implements OnInit, OnDestroy {
     this.onQuery.unsubscribe();
   }
 
-  getQueryParams() {
-    return {
-      aaa: this.aaa
-    };
-  }
+  // getQueryParams() {
+  //   return {
+  //     aaa: this.aaa
+  //   };
+  // }
 
   changeValue(value: number) {
     this.aaa = value;
     this.router.navigate(['store-list'], { queryParams: { aaa: this.aaa } });
   }
 
-  readStores(options: any) {
+  readStores() {
     this.storeService.readStores()
       .subscribe(data => {
         this.entries = data;
@@ -103,7 +88,7 @@ export class ListComponent implements OnInit, OnDestroy {
         const index = _.findIndex(this.entries, { _id: entry._id });
 
         if (index > -1) {
-          alert('店家: ' + data.name + '已刪除');
+          alert(`店家: ${data.name}已刪除`);
           this.entries.splice(index, 1);
         }
       });
@@ -117,5 +102,5 @@ export class ListComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackByEntries(index: number, entry) { return entry.id; }
+  trackByEntries(index: number, entry) { return entry._id; }
 }

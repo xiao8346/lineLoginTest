@@ -29,11 +29,11 @@ export class LineLoginGetCodeComponent implements OnInit, OnDestroy {
     this.onQueryParamsChange = this.route
       .queryParams
       .subscribe(params => {
-        const code = params['code'];
+        this.code = params['code'];
         const state = params['state'];
-        this.code = code;
-        if (code && state) {
-          this.createLineLoginToken(code);
+
+        if (this.code && state) {
+          this.createLineLoginToken(this.code);
         }
       });
 
@@ -65,7 +65,7 @@ export class LineLoginGetCodeComponent implements OnInit, OnDestroy {
   }
 
   removeToken() {
-    if (!confirm('刪除token?')) { return; }
+    if (!confirm('刪除 token?')) { return; }
 
     localStorage.removeItem('token');
 

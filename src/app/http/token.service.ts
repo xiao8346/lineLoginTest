@@ -20,26 +20,27 @@ export class TokenService {
     }
   }
 
-  get tokenInfo(): ITokenInfo {
+  get tokenInfo() {
     if (!this.token) { return; }
 
     try {
       const payload = this.token.split('.')[1];
 
-      return JSON.parse(atob(payload));
+      return JSON.parse(atob(payload)) as ITokenInfo;
     } catch (error) {
       console.log('tokenInfo error', error);
     }
   }
 
   get isLogin() {
-    const { exp } = this.tokenInfo || {};
-
-    if (exp) {
+    if (this.tokenInfo) {
+      const { exp } = this.tokenInfo;
       const now = Date.now();
 
       return !!this.token && (exp > now);
     }
+
+    return false;
   }
 }
 

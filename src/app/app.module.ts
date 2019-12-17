@@ -9,6 +9,7 @@ import { LineLoginGetCodeComponent } from './line-login-get-code/line-login-get-
 import { ListComponent } from './store/list/list.component';
 import { EditorComponent } from './store/editor/editor.component';
 import { APP_CONFIG, AppConfig } from './app.config';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     {

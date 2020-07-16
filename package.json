@@ -27,7 +27,7 @@
     "core-js": "^2.6.11",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ng-cli-pug-loader": "^0.2.2",
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",

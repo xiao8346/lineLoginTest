@@ -25,7 +25,7 @@
     "@angular/router": "~9.0.0-rc.6",
     "bootstrap": "^3.4.1",
     "core-js": "^2.6.11",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.15",
     "ng-cli-pug-loader": "^0.2.2",
